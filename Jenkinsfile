@@ -7,13 +7,9 @@ pipeline{
        string(name: 'Branch', defaultValue: 'main')
     }
     stages {
-      stage('maven build') {
-        steps {
-          stage('checkout'){
-             steps{
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/venkatapavankalyang/maven-project.git']]])
-             }
-          }
+      stage('checkout'){
+        steps{
+          checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/venkatapavankalyang/maven-project.git']]])
         }
       }
       stage('build'){
