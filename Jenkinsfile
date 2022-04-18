@@ -11,7 +11,9 @@ pipeline{
         steps {
           script {
             PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-            checkout("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch", "${PIPELINE_PROPS["MAVEN_CLEAN_COMMAND"]}", "${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+            checkout("${PIPELINE_PROPS["MAVEN_URL"]}",
+            "$params.Branch", "${PIPELINE_PROPS["MAVEN_CLEAN_COMMAND"]}",
+            "${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
           }
         }
       }
