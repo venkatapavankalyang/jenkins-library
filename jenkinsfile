@@ -2,6 +2,7 @@ def PIPELINE_PROPS
 
 pipeline{
     agent any
+
     libraries {
         lib('jenkins-library@main')
     }
