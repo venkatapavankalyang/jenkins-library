@@ -1,15 +1,17 @@
+def PIPELINE_PROPS
 pipeline{
     agent any
-
-    stages{
-        stage('checkout'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/venkatapavankalyang/maven-project.git']]])
+    parameters{
+    choice(name: 'Moduletype' choices:['maven' , 'sonar'])
+    string(name: 'Branch', defaultValue: 'main')
+    }
+      stage('maven build'){
+         script{
+            PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
+            gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" , "${PIPELINE_PROPS["MAVEN_CLEAN_COMMAND"]}" , "${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
             }
-        }
-        stage('mvn build'){
-            steps{
-                sh 'mvn package'
+            catch(Exception e) {
+                currentBuild.result: "Failure"
             }
         }
     }
