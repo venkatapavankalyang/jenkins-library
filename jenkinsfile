@@ -11,5 +11,4 @@ pipeline{
             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" , "${PIPELINE_PROPS["MAVEN_CLEAN_COMMAND"]}" , "${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
             }
         }
-    }
 }
