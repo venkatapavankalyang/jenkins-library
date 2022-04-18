@@ -2,8 +2,7 @@ def PIPELINE_PROPS
 
 pipeline{
     agent any
-
-    parameters{
+       parameters{
        choice(name: 'Moduletype', choices: ['maven' , 'sonar'])
        string(name: 'Branch', defaultValue: 'main')
     }
