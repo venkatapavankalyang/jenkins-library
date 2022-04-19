@@ -7,7 +7,8 @@ pipeline {
     stages {
       stage('checkout') {
          steps {
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/venkatapavankalyang/maven-project.git']]])
+             PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
+             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
          }
       }
       stage('build') {
