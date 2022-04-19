@@ -2,10 +2,6 @@ def PIPELINE_PROPS
 
 pipeline{
     agent any
-    parameters{
-    choice(name: 'Moduletype', choices: ['maven' , 'sonar'])
-    string(name: 'Branch', defaultValue: 'main')
-    }
     stages {
       stage('checkout') {
          steps {
@@ -18,3 +14,4 @@ pipeline{
           }
       }
     }
+}
