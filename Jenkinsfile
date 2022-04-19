@@ -1,5 +1,3 @@
-def PIPELINE_PROPS
-
 pipeline{
     agent any
     stages {
@@ -8,7 +6,7 @@ pipeline{
                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/venkatapavankalyang/maven-project.git']]])}
          }
       }
-      stage('build'){
+      stage('build') {
           steps{
               sh 'mvn package'
           }
