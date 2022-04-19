@@ -1,3 +1,4 @@
+def PIPELINE_PROPS
 pipeline {
    agent any
       parameters{
