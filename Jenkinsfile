@@ -1,6 +1,10 @@
 def PIPELINE_PROPS
 pipeline {
    agent any
+   libraries {
+       lib('jenkins-library')
+   }
+       tools {
       parameters{
       choice(name: 'Moduletype', choices: ['maven' , 'sonar'])
       string(name: 'Branch', defaultValue: 'main')
