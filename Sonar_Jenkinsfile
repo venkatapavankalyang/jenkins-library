@@ -23,7 +23,7 @@ pipeline {
           }
       }
       stage('SonarQube analysis') {
-           script {
+           steps{
               sh 'mvn clean package sonar:sonar'
            }
       }
