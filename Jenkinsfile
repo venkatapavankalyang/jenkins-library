@@ -9,11 +9,12 @@ pipeline {
       string(name: 'Branch', defaultValue: 'main')
    }
     stages {
-      stage('checkout') {
+      stage('SONAR_BUILD') {
          steps {
            script {
              PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
              gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
+             build("$MAVEN_BUILD_COMMAND")
            }
          }
       }
