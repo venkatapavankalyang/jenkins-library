@@ -20,14 +20,13 @@ pipeline {
            }
          }
        }
-      stage('sonar analysis') {
+      stage('SonarQube Analysis') {
          steps {
-           script {
-              withSonarQubeEnv("SonarQube") {
+              withSonarQubeEnv("sonarqube-7.9.5") {
               sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
               }
-           }
          }
       }
-   }
+    }
  }
+
