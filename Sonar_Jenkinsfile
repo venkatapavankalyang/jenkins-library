@@ -17,7 +17,7 @@ pipeline {
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
              stage('SonarQube analysis') {
                  withSonarQubeEnv('SonarQube Scanner') {
-                   sh "${scannerHome}/bin/sonar-scanner"
+                   sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
                  }
              }
            }
