@@ -19,8 +19,8 @@ pipeline {
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
 
              sonarQubeAnalysis("${PIPELINE_PROPS["MAVEN_PROJECT_NAME"]}",
-                            "${PIPELINE_PROPS["projectVersion"]}",
-                            "${PIPELINE_PROPS["sonarSources"]}")
+                               "${PIPELINE_PROPS["projectVersion"]}",
+                               "${PIPELINE_PROPS["sonarSources"]}")
 
           }
          }
