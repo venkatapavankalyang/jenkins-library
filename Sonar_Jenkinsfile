@@ -19,10 +19,11 @@ pipeline {
          }
       }
       stage ('SonarQube analysis') {
-          steps {
-            withSonarQubeEnv('sonarqube-7.9.5')
+         steps {
+          withSonarQubeEnv('sonarqube-7.9.5') {
             sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
           }
+         }
       }
     }
 }
