@@ -15,7 +15,7 @@ pipeline {
              PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
              gitCheckOut("${PIPELINE_PROPS["SONAR_URL"]}", "$params.Branch")
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
-             sonarAnalysis("${PIPELINE_PROPS["SONAR_COMMAND"]}","${PIPELINE_PROPS["projectVersion"]}",)
+             sh 'mvn clean package sonar:sonar'
            }
          }
       }
