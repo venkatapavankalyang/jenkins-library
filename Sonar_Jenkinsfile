@@ -17,7 +17,7 @@ pipeline {
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
              stage('SonarQube analysis') {
                  // requires SonarQube Scanner 2.8+
-                 def scannerHome = tool 'SonarQube Scanner 2.8';
+                 def scannerHome = tool 'SonarQube Scanner 7.9.5';
                  withSonarQubeEnv('SonarQube Scanner') {
                    sh "${scannerHome}/bin/sonar-scanner"
                  }
