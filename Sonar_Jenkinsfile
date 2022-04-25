@@ -16,10 +16,11 @@ pipeline {
 
              gitCheckOut("${PIPELINE_PROPS["SONAR_URL"]}", "$params.Branch")
 
-             sh ```
-              ${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}
-              ${PIPELINE_PROPS["SONAR_COMMAND"]}
-              '''
+             sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+
+             sonarQubeAnalysis("${PIPELINE_PROPS["MAVEN_PROJECT_NAME"]}",
+                               "${PIPELINE_PROPS["projectVersion"]}",
+                               "${PIPELINE_PROPS["sonarSources"]}")
           }
          }
       }
