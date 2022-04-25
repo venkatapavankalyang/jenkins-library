@@ -15,7 +15,13 @@ pipeline {
              PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
              gitCheckOut("${PIPELINE_PROPS["SONAR_URL"]}", "$params.Branch")
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
-             def withSonarQubeEnv (sh 'mvn clean package sonar:sonar')
+             stage('SonarQube analysis') {
+                 // requires SonarQube Scanner 2.8+
+                 def scannerHome = tool 'SonarQube Scanner 2.8';
+                 withSonarQubeEnv('SonarQube Scanner') {
+                   sh "${scannerHome}/bin/sonar-scanner"
+                 }
+             }
            }
          }
       }
