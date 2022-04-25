@@ -18,7 +18,7 @@ pipeline {
          } }
       stage ('SonarQube analysis') {
           steps {
-            sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
+            sh("${PIPELINE_PROPS["SONAR_COMMAND"]}")
           }
       }
     }
