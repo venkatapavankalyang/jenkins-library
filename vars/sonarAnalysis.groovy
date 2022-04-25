@@ -1,6 +1,6 @@
 def call(String ProjectKey,String ProjectName) {
     def sonarDir = tool name: 'scanner-project', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-    withSonarQubeEnv(credentialsId: 'comp-sonar') {
+    withSonarQubeEnv(credentialsId: 'sonarqube_token') {
         sh "${sonarDir}/bin/sonar-scanner \
            -Dsonar.ProjectKey=${ProjectName} \
            -Dsonar.ProjectName=${ProjectName} \
