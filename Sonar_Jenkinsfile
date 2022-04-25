@@ -17,6 +17,7 @@ pipeline {
              gitCheckOut("${PIPELINE_PROPS["SONAR_URL"]}", "$params.Branch")
 
              sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+             sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
           }
          }
       }
