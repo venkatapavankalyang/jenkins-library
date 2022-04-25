@@ -1,14 +1,9 @@
- def call(String projectKey, String projectName) {
-     def scannerhome = tool  name: 'scanner-project'
-     withSonarQubeEnv(credentialsId: 'sonarqube_token') {
-        sh "${scannerhome}/bin/sonar-scanner \
-           -Dsonar.ProjectKey=${projectKey} \
-           -Dsonar.ProjectName=${projectName} \
-           -Dsonar.ws.timeout=60 \
-           -Dsonar.sources=. \
-           -Dsonar.sourceEncoding=UTF-8 \
-           -Dsonar.java.binaries=. \
-           -Dsonar.language=java \
-           -Dsonar.java.source=1.8"
-     }
- }
+
+sonar.projectKey=$JOB_NAME
+ sonar.projectName=$JOB_NAME
+ sonar.projectVersion=$BUILD_NUMBER
+ sonar.exclusions=vendor/**, storage/**, resources/**
+ sonar.language=java
+ sonar.sources=$WORKSPACE
+ sonar.sourceEncoding=UTF-8
+ sonar.java.binaries=$WORKSPACE/build/classes/java/main
