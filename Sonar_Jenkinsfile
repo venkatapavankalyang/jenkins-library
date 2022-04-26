@@ -5,7 +5,7 @@ pipeline {
        lib('jenkins-library')
    }
       parameters {
-      choice(name: 'Moduletype', choices: ['sonar1])
+      choice(name: 'Moduletype', choices: ['sonar1'])
       string(name: 'Branch', defaultValue: 'main')
    }
     stages {
