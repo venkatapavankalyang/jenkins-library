@@ -8,8 +8,8 @@ pipeline {
       choice(name: 'Moduletype', choices: ['sonar1' , 'sonar2'])
       string(name: 'Branch', defaultValue: 'main')
    }
-
-		stage("sonarQube Analysis") {
+     stages {
+        stage("sonarQube Analysis") {
             steps {
                 script {
 					switch(params.Moduletype){
@@ -28,4 +28,5 @@ pipeline {
                 }
             }
         }
+     }
    }
