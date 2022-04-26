@@ -17,14 +17,9 @@ pipeline {
 						    PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
                             sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
-                            sonarQubeAnalysis("${PIPELINE_PROPS["hostUrl"]}",
-                                               "${PIPELINE_PROPS["sonarLogin"]}",
-                                               "${PIPELINE_PROPS["ProjectName"]}",
-                                               "${PIPELINE_PROPS["ProjectVersion"]}",
-                                               "${PIPELINE_PROPS["ProjectKey"]}",)
-
-
-
+                            withSonarQubeEnv("sonarqube-7.9.5") {
+                                    sh sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
+                            }
 
 						break;
 
