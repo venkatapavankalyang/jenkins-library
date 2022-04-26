@@ -14,6 +14,7 @@ pipeline {
            script {
              PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
              gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
+
              build("$MAVEN_BUILD_COMMAND")
            }
          }
