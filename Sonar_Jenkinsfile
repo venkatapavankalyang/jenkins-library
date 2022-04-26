@@ -18,7 +18,7 @@ pipeline {
                             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
                             sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
                             withSonarQubeEnv("sonarqube-7.9.5") {
-                                    sh sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
+                                    sh ("${PIPELINE_PROPS["SONAR_COMMAND"]}")
                             }
 
 						break;
