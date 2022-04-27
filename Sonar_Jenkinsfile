@@ -12,7 +12,7 @@ pipeline {
         stage("sonarQube Analysis") {
             steps {
                 script {
-					switch(params.Moduletype){
+					switch(params.ModuleType){
 						case "sonar1":
 						    PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
