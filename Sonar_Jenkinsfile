@@ -1,6 +1,6 @@
 def PIPELINE_PROPS
 pipeline {
-   agent none
+   agent any
    libraries {
        lib('jenkins-library')
    }
