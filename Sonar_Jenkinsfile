@@ -5,7 +5,7 @@ pipeline {
        lib('jenkins-library')
    }
       parameters {
-      choice(name: 'Moduletype', choices: ['sonar1' , 'sonar2'])
+      choice(name: 'ModuleType', choices: ['sonar1' , 'sonar2'])
       string(name: 'Branch', defaultValue: 'main')
    }
      stages {
@@ -20,7 +20,7 @@ pipeline {
                             withSonarQubeEnv("sonarqube-7.2") {
                                     sh """
                                        mvn sonar:sonar \
-                                         -Dsonar.host.url=http://3.233.215.43:9000 \
+                                         -Dsonar.host.url=http://:9000 \
                                          -Dsonar.login=d0f4820cb002827194eaebc5fe30c5e54d3c8e96
                                        """
                              }
