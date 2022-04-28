@@ -21,7 +21,6 @@ pipeline {
                        withSonarQubeEnv("SonarQube-7.5") {
                          sh ("${PIPELINE_PROPS["SONAR_MAVEN_COMMAND"]}")
                        }
-                 }
               }
            }
         }
@@ -37,8 +36,6 @@ pipeline {
                         withSonarQubeEnv("SonarQube-7.5") {
                          sh ("${PIPELINE_PROPS["SONAR_GRADLE_COMMAND"]}")
                         }
-                    }
-                  }
                }
             }
         }
