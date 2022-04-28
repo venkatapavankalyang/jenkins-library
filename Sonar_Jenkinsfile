@@ -16,10 +16,10 @@ pipeline {
            steps {
               script {
                 PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-                gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch")
                 def str = "$ModuleType"
                   if (str.contains("Maven_Build")) {
                     dir("${WORKSPACE}/maven-project") {
+                       gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch"
                        sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
                        withSonarQubeEnv("SonarQube-7.5") {
                          sh ("${PIPELINE_PROPS["SONAR_MAVEN_COMMAND"]}")
