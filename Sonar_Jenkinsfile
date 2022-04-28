@@ -31,7 +31,7 @@ pipeline {
                script {
                   PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                   gitCheckOut("${PIPELINE_PROPS["GRADLE_URL"]}", "$params.Branch","$GRADLE_PROJECT_NAME" )
-                  def customPath = "${WORKSPACE}/${env.JOB_NAME}
+                  def customPath = "${WORKSPACE}/${env.JOB_NAME}"
                   gradleBuild()
                }
             }
