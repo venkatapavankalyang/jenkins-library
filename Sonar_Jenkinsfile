@@ -24,7 +24,7 @@ pipeline {
               }
            }
         }
-        stage ("Maven_BuilD") {
+        stage ("Gradle_BuilD") {
             when {
                 expression { choices == 'All' || choices == 'Gradle_Build' }
             }
