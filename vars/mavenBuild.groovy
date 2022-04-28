@@ -1,10 +1,10 @@
-def call(final String ModuleType String Build_TOOL ) {
-
-    def str = "$params.ModuleType"
-    if (str.contains("Maven_Build")) {
-        dir("${WORKSPACE}/PROJECT_NAME/") {
+def call(final String ModuleType, String Build_TOOL ) {
+   def CUSTOMPATH
+    CUSTOMPATH = "${WORKSPACE}"
+    if (Build_TOOL.contains("Maven_Build")) {
+        dir("$WORKSPACE/mavenproject") {
             sh """
-		    cd "${WORKSPACE}{PROJECT_NAME}
+		    cd "${WORKSPACE}/mavenproject"
 			mvn clean packge
             withSonarQubeEnv("SonarQube-7.5") {
               sh "mvn sonar:sonar"
@@ -12,10 +12,10 @@ def call(final String ModuleType String Build_TOOL ) {
            """
         }
     }
-    else if (str.contains("Gradle_Build")) {
-        dir("${WORKSPACE}/PROJECT_NAME/") {
+    else if (Build_TOOL.contains("Gradle_Build")) {
+        dir("${WORKSPACE}/gradeleproject/") {
             sh """
-		    cd "${WORKSPACE}{PROJECT_NAME}
+		    cd "$WORKSPACE/gradelproject"
 			mvn clean packge
             withSonarQubeEnv("SonarQube-7.5") {
               sh "mvn sonar:sonar"
