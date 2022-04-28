@@ -7,4 +7,7 @@ def call() {
           }
         """
     }
+    catch(Exception e) {
+        println(e)
+    }
 }
