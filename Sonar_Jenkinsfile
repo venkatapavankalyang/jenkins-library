@@ -9,11 +9,11 @@ pipeline {
       string(name: 'Branch', defaultValue: 'main')
    }
      stages {
-        stage("sonarQube Analysis") {
+        stage("sonar1 Analysis") {
             steps {
                 script {
 					switch(params.ModuleType){
-						case {params.ModuleType == 'All' || params.ModuleType == 'sonar1'}:
+						case { params.ModuleType == 'All' || params.ModuleType == 'sonar1' }:
 						    PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
                             sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
@@ -22,7 +22,7 @@ pipeline {
                             }
 						break;
 
-						case {params.ModuleType == 'All' || params.ModuleType == 'sonar2'}:
+						case { params.ModuleType == 'All' || params.ModuleType == 'sonar2' }:
                        	PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                         gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
                         sh ("${PIPELINE_PROPS["SONAR_GRADELE_COMMAND"]}")
