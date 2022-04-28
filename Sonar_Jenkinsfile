@@ -17,7 +17,7 @@ pipeline {
               script {
                 PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                 gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch")
-                def str = "$Module_Type"
+                def str = "$ModuleType"
                   if (str.contains("Maven_Build")) {
                     dir("${WORKSPACE}/maven-project") {
                        sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
