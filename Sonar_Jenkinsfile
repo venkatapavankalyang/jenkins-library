@@ -24,7 +24,7 @@ pipeline {
               }
            }
         }
-        stage ("Gradle_-BuilD") {
+        stage ("Gradle_BuilD") {
             when {
                 expression { choices == 'All' || choices == 'Gradle_Build' }
             }
