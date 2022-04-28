@@ -19,7 +19,6 @@ pipeline {
                  gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch","$MAVEN_PROJECT_NAME")
                  def customPath = "${WORKSPACE}/${env.JOB_NAME}"
                  mavenBuild()
-                 }
               }
            }
         }
