@@ -5,30 +5,39 @@ pipeline {
        lib('jenkins-library')
    }
       parameters {
-      choice(name: 'ModuleType', choices: ['All' , 'sonar1' , 'sonar2'])
+      choice(name: 'ModuleType', choices: ['All' , 'Maven_Build' , 'Gradle_Build'])
       string(name: 'Branch', defaultValue: 'main')
    }
      stages {
-        stage("sonar1 Analysis") {
-            steps {
-                script {
-					switch(params.ModuleType){
-						case { params.ModuleType == 'All' || params.ModuleType == 'sonar1' }:
-						    PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-                            gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
-                            sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
-                            withSonarQubeEnv("SonarQube-7.5") {
-                                  sh ("${PIPELINE_PROPS["SONAR_MAVEN_COMMAND"]}")
-                            }
-						break;
-
-						case { params.ModuleType == 'All' || params.ModuleType == 'sonar2' }:
-                       	PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-                        gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
-                        sh ("${PIPELINE_PROPS["SONAR_GRADELE_COMMAND"]}")
-					}
-                }
+        stage ("Maven_BuilD") {
+           when {
+               expression { choices == 'All' || choices == 'Maven_Build' }
+           }
+           steps {
+              script {
+                 PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
+                 gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
+                 sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+                 withSonarQubeEnv("SonarQube-7.5") {
+                      sh ("${PIPELINE_PROPS["SONAR_MAVEN_COMMAND"]}")
+                 }
+              }
+           }
+        }
+        stage ("Maven_BuilD") {
+            when {
+                expression { choices == 'All' || choices == 'Gradle_Build' }
             }
+            steps {
+               script {
+                  PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
+                  gitCheckOut("${PIPELINE_PROPS["GRADLE_URL"]}", "$params.Branch" )
+                  sh ("${PIPELINE_PROPS["SONAR_BUILD_COMMAND"]}")
+                  withSonarQubeEnv("SonarQube-7.5") {
+                      sh ("${PIPELINE_PROPS["SONAR_GRADLE_COMMAND"]}")
+                      }
+                  }
+              }
         }
      }
-  }
+   }
