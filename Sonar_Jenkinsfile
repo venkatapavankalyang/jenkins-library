@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
 					switch(params.ModuleType){
-						case "sonar1":
+						case "parmas.All || parmas.sonar1":
 						    PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                             gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
                             sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
@@ -22,10 +22,10 @@ pipeline {
                             }
 						break;
 
-						case "sonar2":
+						case "parmas.All || parmas.sonar2":
                        	PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                         gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch" )
-                        sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+                        sh ("${PIPELINE_PROPS["SONAR_GRADELE_COMMAND"]}")
 					}
                 }
             }
