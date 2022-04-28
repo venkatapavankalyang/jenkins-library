@@ -37,7 +37,7 @@ pipeline {
                script {
                   PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
                   def str = "$ModuleType"
-                  if (str.contains("Maven_Build")) {
+                  if (str.contains("Sonar_Build")) {
                     dir("${WORKSPACE}/sonar-project") {
                         gitCheckOut("${PIPELINE_PROPS["GRADLE_URL"]}", "$params.Branch")
                         sh ("${PIPELINE_PROPS["SONAR_BUILD_COMMAND"]}")
