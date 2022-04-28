@@ -28,6 +28,7 @@ pipeline {
                  }
               }
            }
+        }
         stage ("Gradle_BuilD") {
             when {
                 expression { ModuleType == 'All' || ModuleType == 'Gradle_Build' }
@@ -45,4 +46,3 @@ pipeline {
         }
      }
    }
-}
