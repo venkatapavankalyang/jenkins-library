@@ -23,7 +23,6 @@ pipeline {
                        }
               }
            }
-           return this;
         }
         stage ("maven2_BuilD") {
             when {
