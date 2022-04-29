@@ -5,7 +5,7 @@ pipeline {
        lib('jenkins-library')
    }
       parameters {
-      choice(name: 'ModuleType', choices: ['All' , 'Maven_Build' , 'Gradle_Build'])
+      choice(name: 'ModuleType', choices: ['All' , 'Maven_Build' , 'maven2_Build'])
       string(name: 'Branch', defaultValue: 'main')
    }
      stages {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage ("Gradle_BuilD") {
             when {
-                expression { ModuleType == 'All' || ModuleType == 'Gradle_Build' }
+                expression { ModuleType == 'All' || ModuleType == 'maven2_Build' }
             }
             steps {
                script {
