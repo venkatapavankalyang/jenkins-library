@@ -1,6 +1,10 @@
-def call(final String ModuleType, String Build_TOOL ) {
-   def CUSTOMPATH
-    CUSTOMPATH = "${WORKSPACE}"
+import static com.sonar.Constants.*
+
+
+def call(final String PROJECT_NAME, String GRADLE_MAVEN_NPM_BUILD_COMMAND, String BUILD_TOOL) {
+
+    def CUSTOMPATH
+    CUSTOMPATH = "${CUSTOM_WORKSPACE}${PROJECT_NAME}"
     if (Build_TOOL.contains("Maven_Build")) {
         dir("$WORKSPACE/mavenproject") {
             sh """
