@@ -16,7 +16,7 @@ pipeline {
            steps {
               script {
                 PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-                       sh ('WORKSPACE/maven-project')
+                       sh ("${WORKSPACE}/maven-project")
                        gitCheckOut("${PIPELINE_PROPS["MAVEN_URL"]}", "$params.Branch")
                        sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
                        withSonarQubeEnv("SonarQube-7.5") {
