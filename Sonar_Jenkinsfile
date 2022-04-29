@@ -31,10 +31,10 @@ pipeline {
             steps {
                script {
                   PIPELINE_PROPS = readProperties file: 'properties/pipeline.properties'
-                        gitCheckOut("${PIPELINE_PROPS["GRADLE_URL"]}", "$params.Branch")
-                        sh ("${PIPELINE_PROPS["SONAR_BUILD_COMMAND"]}")
-                        withSonarQubeEnv("SonarQube-7.6") {
-                         sh ("${PIPELINE_PROPS["SONAR_GRADLE_COMMAND"]}")
+                        gitCheckOut("${PIPELINE_PROPS["MAVEN2_URL"]}", "$params.Branch")
+                        sh ("${PIPELINE_PROPS["MAVEN_BUILD_COMMAND"]}")
+                        withSonarQubeEnv("SonarQube-7.5") {
+                         sh ("${PIPELINE_PROPS["SONAR_MAVEN_COMMAND"]}")
                         }
                }
             }
