@@ -24,7 +24,7 @@ pipeline {
               }
            }
         }
-        stage ("Gradle_BuilD") {
+        stage ("maven2_BuilD") {
             when {
                 expression { ModuleType == 'All' || ModuleType == 'maven2_Build' }
             }
